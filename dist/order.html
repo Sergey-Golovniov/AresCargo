@@ -42,6 +42,38 @@
       display: block;
       width: 250px;
     }
+
+    .order-form__remove-row {
+      background: url(bin.svg);
+      background-color: #FE1601;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 20px;
+
+      width: 40px;
+      height: 40px;
+
+      border: none;
+      border-radius: 7px;
+    }
+
+    .order-form__add-row {
+      background-color: rgb(0, 142, 0);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 20px;
+
+      color:white;
+      font-size: 26px;
+      font-weight: bold;
+      text-align: center;
+
+      width: 40px;
+      height: 40px;
+
+      border: none;
+      border-radius: 7px;
+    }
   </style>
 
 <form class="user-form order-form">
@@ -69,10 +101,11 @@
         <th scope="col">Цена</th>
         <th scope="col">Доставка по Китаю</th>
         <th scope="col">Общая цена</th>
+        <th scope="col">Удалить</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr class="product-row">
         <td scope="col">
           <input type="text" class="form-control" name="product-name" required placeholder="Название" value="Название">
         </td>
@@ -103,37 +136,8 @@
         <td scope="col">
           <output name="product-total-price"></output>
         </td>
-      </tr>
-      <tr>
         <td scope="col">
-          <input type="text" class="form-control" name="product-name" required placeholder="Название" value="Название">
-        </td>
-        <td scope="col">
-          <input type="text" class="form-control" name="product-link" required placeholder="Ссылка" value="Ссылка">
-        </td>
-        <td scope="col">
-          <input type="text" class="form-control" name="product-footnote" required
-            placeholder="Примечания (пользователь)" value="Примечания (пользователь)">
-        </td>
-        <td scope="col">
-          <textarea class="form-control" name="product-comment" rows="3" placeholder="Комментарий (посредник)"
-            value="Комментарий (посредник)"></textarea>
-        </td>
-        <td scope="col">
-          <input type="text" class="form-control" name="product-price" min="0" required placeholder="1.0" value="1.0">
-        </td>
-        <td scope="col">
-          <input type="number" class="form-control" name="product-quantity" min="1" required placeholder="1" value="1">
-        </td>
-        <td scope="col">
-          <output name="product-category-price"></output>
-        </td>
-        <td scope="col">
-          <input type="text" class="form-control" name="product-delivery" min="1" required placeholder="1.0"
-            value="1.0">
-        </td>
-        <td scope="col">
-          <output name="product-total-price"></output>
+          <button class="order-form__remove-row"></button>
         </td>
       </tr>
       <tr>
@@ -152,6 +156,30 @@
         <td scope="col">
         </td>
         <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+          <button class="order-form__add-row">+</button>
+        </td>
+      </tr>
+      <tr>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col" class="text-end">
+          Итог:
         </td>
         <td scope="col">
           <output name="resulting-price"></output>
@@ -166,56 +194,82 @@
 
 <script>
   const orderForm = document.querySelector(".user-form");
+
   if (orderForm) {
     const handleTable = () => {
-      console.log("input");
       const table = orderForm.querySelector('.table');
-      const rows = table.querySelectorAll('tr');
+      const rows = table.querySelectorAll('tr.product-row');
       const resultingPrice = table.querySelector("output[name='resulting-price']");
       resultingPrice.value = 0;
 
       rows.forEach((row, index) => {
-        if (index > 0 && index < rows.length - 1) {
-          const productPrice = row.querySelector("input[name='product-price']");
-          const productQuantity = row.querySelector("input[name='product-quantity']");
-          const productCategoryPrice = row.querySelector("output[name='product-category-price']");
-          const productDelivery = row.querySelector("input[name='product-delivery']");
-          const productTotalPrice = row.querySelector("output[name='product-total-price']");
+        const productPrice = row.querySelector("input[name='product-price']");
+        const productQuantity = row.querySelector("input[name='product-quantity']");
+        const productCategoryPrice = row.querySelector("output[name='product-category-price']");
+        const productDelivery = row.querySelector("input[name='product-delivery']");
+        const productTotalPrice = row.querySelector("output[name='product-total-price']");
 
-          const regexpTestInput = (input, type, range) => {
-            const stats = {
-              "float": /^\d+(\.\d+)?$/.test(input.value),
-              "int": /^\d+$/.test(input.value),
-              ">0": Number(input.value) > 0,
-            }
-            if (stats[type] && stats[range]) {
-              input.dataset.previous = Number(input.value);
-              input.value = Number(input.value);
-            } else {
-              input.value = input.dataset.previous ?? 1.0;
-            }
+        const regexpTestInput = (input, type, range) => {
+          const stats = {
+            "float": /^\d+(\.\d+)?$/.test(input.value),
+            "int": /^\d+$/.test(input.value),
+            ">0": Number(input.value) > 0,
           }
-
-          if (productPrice && productQuantity && productCategoryPrice && productDelivery && productTotalPrice) {
-            regexpTestInput(productPrice, "float", ">0");
-            regexpTestInput(productQuantity, "int", ">0");
-            regexpTestInput(productDelivery, "float", ">0");
-            productCategoryPrice.value = Number((productPrice.value * productQuantity.value).toFixed(3));
-            productTotalPrice.value = Number((productPrice.value * productQuantity.value + Number(productDelivery.value)).toFixed(3));
-            resultingPrice.value = Number(Number(resultingPrice.value) + Number(productTotalPrice.value)).toFixed(3);
+          if (stats[type] && stats[range]) {
+            input.dataset.previous = Number(input.value);
+            input.value = Number(input.value);
           } else {
-            if (confirm("Произошла ошибка. Обновить страницу?")) {
-              location.href = location.href;
-            }
-
-            throw new Error("Не хватает поля в таблице");
+            input.value = input.dataset.previous ?? 1.0;
           }
+        }
+
+        if (productPrice && productQuantity && productCategoryPrice && productDelivery && productTotalPrice) {
+          regexpTestInput(productPrice, "float", ">0");
+          regexpTestInput(productQuantity, "int", ">0");
+          regexpTestInput(productDelivery, "float", ">0");
+          productCategoryPrice.value = Number((productPrice.value * productQuantity.value).toFixed(3));
+          productTotalPrice.value = Number((productPrice.value * productQuantity.value + Number(productDelivery.value)).toFixed(3));
+          resultingPrice.value = Number(Number(resultingPrice.value) + Number(productTotalPrice.value)).toFixed(3);
+        } else {
+          if (confirm("Произошла ошибка. Обновить страницу?")) {
+            location.href = location.href;
+          }
+
+          throw new Error("Не хватает поля в таблице");
         }
       })
     }
 
+
+    const rowContentSample = orderForm.querySelector('tr.product-row').innerHTML;
+
     orderForm.addEventListener("change", handleTable);
     handleTable();
+
+    const removeRow = function (event) {
+      event.preventDefault();
+      this.parentElement.parentElement.remove();
+      handleTable();
+    }
+
+    const addRow = orderForm.querySelector(".order-form__add-row");
+    addRow.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = rowContentSample;
+      tr.classList.add("product-row");
+
+      const tbody = document.querySelector(".user-form tbody");
+      const referencePoint = [].find.call(tbody.querySelectorAll('tr'), row => !row.classList.contains('product-row'));
+
+      tbody.insertBefore(tr, referencePoint);
+
+      tr.querySelector(".order-form__remove-row").addEventListener("click", removeRow);
+      handleTable();
+    });
+
+    document.querySelector(".order-form__remove-row").addEventListener("click", removeRow);
   }
 </script>
 
