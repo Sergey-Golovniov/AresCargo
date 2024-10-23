@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <style>
+    .user-form {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgb(0 0 0 / .15);
+      border-radius: 30px;
+      font-family: 'Open Sans', Open Sans, Arial, sans-serif;
+    }
+
+    .user-form {
+      max-width: 1400px;
+    }
+
+    .user-form__title {
+      font-size: 28px;
+      text-align: center;
+    }
+  </style>
+
+<form class="user-form user-form">
+  <p class="user-form__title">Оформление заказа</p>
+  <div class="mb-3">
+    <label for="fullname" class="form-label">ФИО:</label>
+    <input type="text" class="form-control" id="fullname" required placeholder="Фамилия Имя Отчество"
+      value="Фамилия Имя Отчество">
+  </div>
+  <div class="mb-3">
+    <label for="address" class="form-label">Адрес</label>
+    <input type="text" class="form-control" id="address" required value="Адрес">
+  </div>
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Название</th>
+        <th scope="col">Ссылка</th>
+        <th scope="col">Примечания (пользователь)</th>
+        <th scope="col">Комментарий (посредник)</th>
+        <th scope="col">Цена за шт</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Доставка по Китаю</th>
+        <th scope="col">Общая цена</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="col">
+          <input type="text" class="form-control" name="product-name" required placeholder="Название" value="Название">
+        </td>
+        <td scope="col">
+          <input type="text" class="form-control" name="product-link" required placeholder="Ссылка" value="Ссылка">
+        </td>
+        <td scope="col">
+          <input type="text" class="form-control" name="product-footnote" required
+            placeholder="Примечания (пользователь)" value="Примечания (пользователь)">
+        </td>
+        <td scope="col">
+          <textarea class="form-control" name="product-comment" rows="3" placeholder="Комментарий (посредник)"
+            value="Комментарий (посредник)"></textarea>
+        </td>
+        <td scope="col">
+          <input type="text" class="form-control" name="product-price" min="0" required placeholder="1.0" value="1.0">
+        </td>
+        <td scope="col">
+          <input type="number" class="form-control" name="product-quantity" min="1" required placeholder="1" value="1">
+        </td>
+        <td scope="col">
+          <output name="product-category-price"></output>
+        </td>
+        <td scope="col">
+          <input type="text" class="form-control" name="product-delivery" min="1" required placeholder="1.0"
+            value="1.0">
+        </td>
+        <td scope="col">
+          <output name="product-total-price"></output>
+        </td>
+      </tr>
+      <tr>
+        <td scope="col">
+          <input type="text" class="form-control" name="product-name" required placeholder="Название" value="Название">
+        </td>
+        <td scope="col">
+          <input type="text" class="form-control" name="product-link" required placeholder="Ссылка" value="Ссылка">
+        </td>
+        <td scope="col">
+          <input type="text" class="form-control" name="product-footnote" required
+            placeholder="Примечания (пользователь)" value="Примечания (пользователь)">
+        </td>
+        <td scope="col">
+          <textarea class="form-control" name="product-comment" rows="3" placeholder="Комментарий (посредник)"
+            value="Комментарий (посредник)"></textarea>
+        </td>
+        <td scope="col">
+          <input type="text" class="form-control" name="product-price" min="0" required placeholder="1.0" value="1.0">
+        </td>
+        <td scope="col">
+          <input type="number" class="form-control" name="product-quantity" min="1" required placeholder="1" value="1">
+        </td>
+        <td scope="col">
+          <output name="product-category-price"></output>
+        </td>
+        <td scope="col">
+          <input type="text" class="form-control" name="product-delivery" min="1" required placeholder="1.0"
+            value="1.0">
+        </td>
+        <td scope="col">
+          <output name="product-total-price"></output>
+        </td>
+      </tr>
+      <tr>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+        </td>
+        <td scope="col">
+          <output name="resulting-price"></output>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <button type="submit" class="btn btn-primary user-form__submit">Отправить</button>
+</form>
+
+<script>
+  const userForm = document.querySelector(".user-form");
+  if (userForm) {
+    const handleTable = () => {
+      console.log("input");
+      const table = userForm.querySelector('.table');
+      const rows = table.querySelectorAll('tr');
+      const resultingPrice = table.querySelector("output[name='resulting-price']");
+      resultingPrice.value = 0;
+
+      rows.forEach((row, index) => {
+        if (index > 0 && index < rows.length - 1) {
+          const productPrice = row.querySelector("input[name='product-price']");
+          const productQuantity = row.querySelector("input[name='product-quantity']");
+          const productCategoryPrice = row.querySelector("output[name='product-category-price']");
+          const productDelivery = row.querySelector("input[name='product-delivery']");
+          const productTotalPrice = row.querySelector("output[name='product-total-price']");
+
+          const regexpTestInput = (input, type, range) => {
+            const stats = {
+              "float": /^\d+(\.\d+)?$/.test(input.value),
+              "int": /^\d+$/.test(input.value),
+              ">0": Number(input.value) > 0,
+            }
+            if (stats[type] && stats[range]) {
+              input.dataset.previous = Number(input.value);
+              input.value = Number(input.value);
+            } else {
+              input.value = input.dataset.previous ?? 1.0;
+            }
+          }
+
+          if (productPrice && productQuantity && productCategoryPrice && productDelivery && productTotalPrice) {
+            regexpTestInput(productPrice, "float", ">0");
+            regexpTestInput(productQuantity, "int", ">0");
+            regexpTestInput(productDelivery, "float", ">0");
+            productCategoryPrice.value = Number((productPrice.value * productQuantity.value).toFixed(3));
+            productTotalPrice.value = Number((productPrice.value * productQuantity.value + Number(productDelivery.value)).toFixed(3));
+            resultingPrice.value = Number(Number(resultingPrice.value) + Number(productTotalPrice.value)).toFixed(3);
+          } else {
+            if (confirm("Произошла ошибка. Обновить страницу?")) {
+              location.href = location.href;
+            }
+
+            throw new Error("Не хватает поля в таблице");
+          }
+        }
+      })
+    }
+
+    userForm.addEventListener("change", handleTable);
+    handleTable();
+  }
+</script>
+
+<!-- Блок покупателя: 
+ФИО - текстовое поле, 
+Адрес доставки - текстовое поле.
+
+Таблица товаров из 10 столбцов:
+- Название - текстовое поле
+- Ссылка - текстовое поле
+- Примечания (пользователь) - текстовое поле
+- Комментарий (посредник) - текстовое поле
+- Цена за шт - числовое поле, больше 0
+- Количество - числовое поле, больше 0
+- Цена - числовое поле, рассчитывается автоматически = цена за шт * количество, недоступно для редактирования, больше 0
+- Доставка по Китаю - числовое поле, больше 0
+- Общая цена - числовое поле, рассчитывается автоматически = цена за шт * количество + доставка по Китаю, недоступно для редактирования, больше 0.
+
+Под колонкой Общая цена в конце таблицы - должна быть строка:
+Итоговая сумма - числовое поле, рассчитывается автоматически, как сумма всех вышестоящих значений в колонке Общая цена, недоступно для редактирования, больше 0.
+
+Позиций товара может быть от 1 до бесконечности, но не 0.
+
+Внизу формы кнопка Отправить, после нажатия на кнопку - Сообщение «Бланк успешно принят в работу» -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
