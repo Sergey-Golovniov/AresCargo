@@ -28,7 +28,7 @@
       font-family: 'Open Sans', Open Sans, Arial, sans-serif;
     }
 
-    .user-form {
+    .order-form {
       max-width: 1400px;
     }
 
@@ -36,21 +36,29 @@
       font-size: 28px;
       text-align: center;
     }
+
+    .user-form .btn {
+      margin: auto;
+      display: block;
+      width: 250px;
+    }
   </style>
 
-  <form class="user-form signIn-form">
-      <p class="user-form__title">Вход</p>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email:</label>
-      <input type="email" class="form-control" id="email" minlength="3" required placeholder="example@gmail.com"
-        value="example@gmail.com">
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Пароль:</label>
-      <input type="password" class="form-control" id="password" minlength="6" required value="test123">
-    </div>
-    <button type="submit" class="btn btn-primary signIn-form__submit">Войти</button>
-  </form>
+<form class="user-form signIn-form">
+  <p class="user-form__title">Вход</p>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" class="form-control" id="email" minlength="3" required placeholder="example@gmail.com"
+      value="example@gmail.com">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Пароль:</label>
+    <input type="password" class="form-control" id="password" minlength="6" required value="test123">
+  </div>
+  <button type="submit" class="btn btn-primary signIn-form__submit">Войти</button>
+    <a href="reset.html" class="m-auto mt-2 d-block text-center btn btn-outline-primary">Забыли пароль?</a>
+  <p class="mt-4 text-center">Нет аккаунта? <a href="signUp.html" class="m-auto mt-2">Зарегестрироваться</a></p>
+</form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

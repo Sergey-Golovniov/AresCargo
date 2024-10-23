@@ -28,7 +28,7 @@
       font-family: 'Open Sans', Open Sans, Arial, sans-serif;
     }
 
-    .user-form {
+    .order-form {
       max-width: 1400px;
     }
 
@@ -36,43 +36,51 @@
       font-size: 28px;
       text-align: center;
     }
+
+    .user-form .btn {
+      margin: auto;
+      display: block;
+      width: 250px;
+    }
   </style>
 
-  <form class="user-form signUp-form">
-      <p class="user-form__title">Регистрация</p>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email:</label>
-      <input type="email" class="form-control" id="email" minlength="3" required placeholder="example@gmail.com" value="example@gmail.com">
+<form class="user-form signUp-form">
+  <p class="user-form__title">Регистрация</p>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" class="form-control" id="email" minlength="3" required placeholder="example@gmail.com"
+      value="example@gmail.com">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Пароль:</label>
+    <input type="password" class="form-control" id="password" minlength="6" required value="test123">
+  </div>
+  <div class="mb-3">
+    <label for="password2" class="form-label">Подтверждение пароля:</label>
+    <input type="password" class="form-control" id="password2" minlength="6" required value="test123">
+    <div class="invalid-feedback">
+      Пароли не совпадают
     </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Пароль:</label>
-      <input type="password" class="form-control" id="password" minlength="6" required value="test123">
-    </div>
-    <div class="mb-3">
-      <label for="password2" class="form-label">Подтверждение пароля:</label>
-      <input type="password" class="form-control" id="password2" minlength="6" required value="test123">
-      <div class="invalid-feedback">
-        Пароли не совпадают
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary signUp-form__submit">Зарегистрироваться</button>
-  </form>
+  </div>
+  <button type="submit" class="btn btn-primary signUp-form__submit">Зарегистрироваться</button>
+  <p class="mt-4 text-center">Уже есть аккаунт? <a href="signIn.html" class="m-auto mt-2">Войти</a></p>
+</form>
 
-  <script>
-    const signUpButton = document.querySelector(".signUp-form__submit");
-    const passwordInput = document.querySelector("#password");
-    const passwordInput2 = document.querySelector("#password2");
+<script>
+  const signUpButton = document.querySelector(".signUp-form__submit");
+  const passwordInput = document.querySelector("#password");
+  const passwordInput2 = document.querySelector("#password2");
 
-    if (signUpButton && passwordInput && passwordInput2) {
-      signUpButton.addEventListener("click", function (event) {
-        if (passwordInput.value !== passwordInput2.value) {
-          passwordInput.classList.add('is-invalid');
-          passwordInput2.classList.add('is-invalid');
-          event.preventDefault();
-        }
-      })
-    }
-  </script>
+  if (signUpButton && passwordInput && passwordInput2) {
+    signUpButton.addEventListener("click", function (event) {
+      if (passwordInput.value !== passwordInput2.value) {
+        passwordInput.classList.add('is-invalid');
+        passwordInput2.classList.add('is-invalid');
+        event.preventDefault();
+      }
+    })
+  }
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

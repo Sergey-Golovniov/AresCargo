@@ -28,7 +28,7 @@
       font-family: 'Open Sans', Open Sans, Arial, sans-serif;
     }
 
-    .user-form {
+    .order-form {
       max-width: 1400px;
     }
 
@@ -36,9 +36,15 @@
       font-size: 28px;
       text-align: center;
     }
+
+    .user-form .btn {
+      margin: auto;
+      display: block;
+      width: 250px;
+    }
   </style>
 
-<form class="user-form user-form">
+<form class="user-form order-form">
   <p class="user-form__title">Оформление заказа</p>
   <div class="mb-3">
     <label for="fullname" class="form-label">ФИО:</label>
@@ -159,11 +165,11 @@
 </form>
 
 <script>
-  const userForm = document.querySelector(".user-form");
-  if (userForm) {
+  const orderForm = document.querySelector(".user-form");
+  if (orderForm) {
     const handleTable = () => {
       console.log("input");
-      const table = userForm.querySelector('.table');
+      const table = orderForm.querySelector('.table');
       const rows = table.querySelectorAll('tr');
       const resultingPrice = table.querySelector("output[name='resulting-price']");
       resultingPrice.value = 0;
@@ -208,7 +214,7 @@
       })
     }
 
-    userForm.addEventListener("change", handleTable);
+    orderForm.addEventListener("change", handleTable);
     handleTable();
   }
 </script>
